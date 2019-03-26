@@ -33,7 +33,7 @@ namespace Capstone.Tests
                 cmd = new SqlCommand("INSERT INTO park (name, location, establish_date, area, visitors, description) VALUES ('Jellystone', 'Ohio', '1900-01-01', 38420, 123456, 'Bears really love to steal picnic baskets here.'); SELECT CAST(SCOPE_IDENTITY() as int);", connection);
                 parkID = (int)cmd.ExecuteScalar();
 
-                cmd = new SqlCommand("INSERT INTO campground (park_id, name, open_from_mm, open_to_mm, daily_fee) VALUES (@parkid, 'Death Zone', 10, 12, 100.00); SELECT CAST(SCOPE_IDENTITY() as int);", connection);
+                cmd = new SqlCommand("INSERT INTO campground (park_id, name, open_from_mm, open_to_mm, daily_fee) VALUES (@parkid, 'Picnic Zone', 10, 12, 100.00); SELECT CAST(SCOPE_IDENTITY() as int);", connection);
                 cmd.Parameters.AddWithValue("@parkid", parkID);
                 campgroundID = (int)cmd.ExecuteScalar();
 
@@ -73,7 +73,7 @@ namespace Capstone.Tests
             Campground campground = new Campground();
             campground = campgroundDAL.GetCampground(campgroundID);
 
-            Assert.AreEqual("Death Zone", campground.Name);
+            Assert.AreEqual("Picnic Zone", campground.Name);
         }
 
     }
